@@ -142,12 +142,14 @@ html {
   animation: particle-float linear infinite;
 }
 
-/* Custom cursor — suppress default cursors so the custom cursor takes over */
-*:not(input):not(textarea) { cursor: none !important; }
-input, textarea { cursor: text !important; }
-
-@media (hover: none) and (pointer: coarse) {
-  * { cursor: auto !important; }
+/*
+  Custom cursor: suppress the default cursor on pointer devices so our
+  custom canvas cursor takes over. Text fields keep `cursor: text` for
+  accessibility. Touch/coarse-pointer devices fall back to the OS cursor.
+*/
+@media (hover: hover) and (pointer: fine) {
+  *:not(input):not(textarea):not(select) { cursor: none !important; }
+  input, textarea, select { cursor: text; }
 }
 
 /* Prefers reduced motion */

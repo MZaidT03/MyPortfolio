@@ -24,7 +24,7 @@ const CustomCursor = () => {
     const handleMouseLeave = () => setIsVisible(false);
 
     const handleMouseOver = (e) => {
-      const target = e.target.closest("a, button, [data-cursor='pointer'], [role='button']");
+      const target = e.target.closest("a, button, [data-cursor='pointer'], [role='button'], [role='link']");
       setIsPointer(!!target);
     };
 

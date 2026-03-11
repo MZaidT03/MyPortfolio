@@ -21,12 +21,12 @@ html {
 }
 
 body {
-  cursor: none;
   background: #050505;
 }
 
-@media (hover: none) and (pointer: coarse) {
+/* Hide default cursor on pointer devices for the custom cursor experience */
+@media (hover: hover) and (pointer: fine) {
   body {
-    cursor: auto;
+    cursor: none;
   }
 }

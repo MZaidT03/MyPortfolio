@@ -37,13 +37,17 @@ const Skills = () => (
       >
         {portfolioData.skills.map((skill, i) => {
           const isHero = heroSkills.includes(skill);
+          const cardClass = [
+            "bg-[#0a0a0a] border border-gray-700 text-cyan-300 rounded-lg cursor-default",
+            "hover:border-cyan-400 hover:text-white hover:shadow-lg hover:shadow-cyan-400/20",
+            "transition-colors duration-300",
+            isHero ? "px-7 py-4 text-lg font-semibold" : "px-5 py-2",
+          ].join(" ");
           return (
             <motion.div
               key={i}
               variants={skillVariants}
-              className={`bg-[#0a0a0a] border border-gray-700 text-cyan-300 rounded-lg cursor-default
-                hover:border-cyan-400 hover:text-white hover:shadow-lg hover:shadow-cyan-400/20
-                transition-colors duration-300 ${isHero ? "px-7 py-4 text-lg font-semibold" : "px-5 py-2"}`}
+              className={cardClass}
               whileHover={{ scale: 1.08, borderColor: "#22d3ee" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
