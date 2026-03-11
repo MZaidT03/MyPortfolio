@@ -8,14 +8,14 @@ html {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #0c0818;
 }
 ::-webkit-scrollbar-thumb {
-  background: #22d3ee;
+  background: #7c3aed;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3b82f6;
+  background: #fbbf24;
 }
 
 /* =====================
@@ -48,8 +48,8 @@ html {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 8px rgba(34, 211, 238, 0.4), 0 0 20px rgba(59, 130, 246, 0.2); }
-  50% { box-shadow: 0 0 24px rgba(34, 211, 238, 0.7), 0 0 48px rgba(59, 130, 246, 0.4); }
+  0%, 100% { box-shadow: 0 0 8px rgba(124, 58, 237, 0.4), 0 0 20px rgba(167, 139, 250, 0.2); }
+  50% { box-shadow: 0 0 24px rgba(124, 58, 237, 0.7), 0 0 48px rgba(251, 191, 36, 0.3); }
 }
 
 @keyframes gradient-move {
@@ -70,8 +70,8 @@ html {
 }
 
 @keyframes border-glow {
-  0%, 100% { border-color: rgba(59, 130, 246, 0.4); }
-  50% { border-color: rgba(34, 211, 238, 0.7); }
+  0%, 100% { border-color: rgba(124, 58, 237, 0.4); }
+  50% { border-color: rgba(251, 191, 36, 0.6); }
 }
 
 @keyframes draw-line {
@@ -120,9 +120,9 @@ html {
 /* Animated hero gradient background */
 .hero-gradient-bg {
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 30%, rgba(34, 211, 238, 0.1) 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 55%);
+    radial-gradient(ellipse at 20% 50%, rgba(124, 58, 237, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 30%, rgba(251, 191, 36, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 80%, rgba(167, 139, 250, 0.1) 0%, transparent 55%);
   background-size: 200% 200%;
   animation: gradient-move 10s ease infinite;
 }
@@ -138,7 +138,7 @@ html {
 .particle {
   position: absolute;
   border-radius: 50%;
-  background: rgba(34, 211, 238, 0.4);
+  background: rgba(167, 139, 250, 0.4);
   animation: particle-float linear infinite;
 }
 
