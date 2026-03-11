@@ -31,7 +31,7 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-20 bg-[#0d0d0d] text-gray-300">
+    <section id="about" className="py-20 bg-[#0f0b1e] text-gray-300">
       <div className="container mx-auto px-6">
         <SectionHeading>About Me</SectionHeading>
         <div className="flex flex-col md:flex-row items-center md:items-start gap-12">
@@ -42,11 +42,11 @@ const About = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="p-1 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full animate-pulse-glow">
+            <div className="p-1 bg-gradient-to-br from-violet-600 to-amber-400 rounded-full animate-pulse-glow">
               <img
                 src={imgProfile}
                 alt="Muhammad Zaid Tahir"
-                className="w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 rounded-full border-4 border-[#0d0d0d] object-cover animate-float"
+                className="w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 rounded-full border-4 border-[#0f0b1e] object-cover animate-float"
               />
             </div>
           </motion.div>
@@ -58,8 +58,8 @@ const About = () => {
             viewport={{ once: true, amount: 0.3 }}
           >
             <motion.div variants={paragraphVariants} className="flex items-center gap-3 justify-center md:justify-start mb-2">
-              <div className="h-px w-12 bg-gradient-to-r from-blue-500 to-cyan-400" />
-              <span className="text-cyan-400 text-sm font-semibold uppercase tracking-widest">
+              <div className="h-px w-12 bg-gradient-to-r from-violet-500 to-amber-400" />
+              <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest">
                 Who am I?
               </span>
             </motion.div>

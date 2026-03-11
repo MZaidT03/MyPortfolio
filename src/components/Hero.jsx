@@ -79,7 +79,7 @@ const Hero = ({ onLinkClick }) => {
   const nameWords = portfolioData.name.split(" ");
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center bg-[#050505] text-white text-center overflow-hidden hero-gradient-bg">
+    <section id="home" className="relative min-h-screen flex items-center bg-[#06030e] text-white text-center overflow-hidden hero-gradient-bg">
       <motion.div
         className="absolute inset-0 hero-gradient-bg"
         animate={{ x: parallaxX * 0.3, y: parallaxY * 0.3 }}
@@ -94,7 +94,7 @@ const Hero = ({ onLinkClick }) => {
               <div key={i} className="overflow-hidden">
                 <motion.span
                   variants={wordVariants}
-                  className="inline-block text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400"
+                  className="inline-block text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-violet-500 via-purple-400 to-amber-400"
                   style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                 >
                   {word}
@@ -129,7 +129,7 @@ const Hero = ({ onLinkClick }) => {
                 href={href}
                 target="_blank"
                 rel="noreferrer"
-                className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded"
+                className="text-gray-300 hover:text-violet-400 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded"
                 aria-label={label}
                 whileHover={{ scale: 1.25, rotate: 5 }}
               >
@@ -143,7 +143,7 @@ const Hero = ({ onLinkClick }) => {
             <MagneticButton
               href="#contact"
               onClick={(e) => onLinkClick(e, "#contact")}
-              className="btn-shimmer inline-block bg-gradient-to-r from-blue-600 to-cyan-500 px-8 py-3 rounded-full font-bold text-white transition-all duration-300 shadow-lg hover:shadow-cyan-500/30 hover:shadow-xl animate-pulse-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+              className="btn-shimmer inline-block bg-gradient-to-r from-violet-600 to-amber-500 px-8 py-3 rounded-full font-bold text-white transition-all duration-300 shadow-lg hover:shadow-violet-500/30 hover:shadow-xl animate-pulse-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
             >
               Get In Touch
             </MagneticButton>

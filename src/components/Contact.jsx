@@ -3,12 +3,12 @@ import portfolioData from "../data/portfolioData";
 import MagneticButton from "./MagneticButton";
 
 const Contact = () => (
-  <section id="contact" className="relative py-20 bg-[#0d0d0d] text-center overflow-hidden">
+  <section id="contact" className="relative py-20 bg-[#0f0b1e] text-center overflow-hidden">
     {/* Dot texture */}
     <div
       className="absolute inset-0 opacity-10"
       style={{
-        backgroundImage: "radial-gradient(circle, #22d3ee 1px, transparent 1px)",
+        backgroundImage: "radial-gradient(circle, #7c3aed 1px, transparent 1px)",
         backgroundSize: "32px 32px",
       }}
     />
@@ -23,7 +23,7 @@ const Contact = () => (
       <motion.svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
-        stroke="#22d3ee"
+        stroke="#a78bfa"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -51,7 +51,7 @@ const Contact = () => (
         />
       </motion.svg>
       <h2
-        className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 tracking-tight"
+        className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-amber-400 tracking-tight"
         style={{ fontFamily: "'Space Grotesk', sans-serif" }}
       >
         Get In Touch
@@ -61,7 +61,7 @@ const Contact = () => (
       </p>
       <MagneticButton
         href={`mailto:${portfolioData.contact}`}
-        className="btn-shimmer inline-block bg-gradient-to-r from-blue-600 to-cyan-500 px-8 py-3 rounded-full font-bold text-white hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+        className="btn-shimmer inline-block bg-gradient-to-r from-violet-600 to-amber-500 px-8 py-3 rounded-full font-bold text-white hover:shadow-lg hover:shadow-violet-500/25 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
       >
         Say Hello
       </MagneticButton>

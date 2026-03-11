@@ -15,7 +15,7 @@ const SectionHeading = ({ children, className = "" }) => (
       {children}
     </h2>
     <motion.div
-      className="h-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mt-4 rounded-full"
+      className="h-0.5 bg-gradient-to-r from-violet-600 to-amber-400 mx-auto mt-4 rounded-full"
       initial={{ width: 0 }}
       whileInView={{ width: "4rem" }}
       viewport={{ once: true, amount: 0.5 }}

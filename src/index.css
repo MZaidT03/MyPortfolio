@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #3b82f6;
-  --color-accent: #22d3ee;
-  --color-tertiary: #a855f7;
-  --color-bg-dark: #050505;
-  --color-bg-card: #0a0a0a;
-  --color-bg-section: #0d0d0d;
-  --color-text-primary: #f3f4f6;
+  --color-primary: #7c3aed;
+  --color-accent: #fbbf24;
+  --color-tertiary: #a78bfa;
+  --color-bg-dark: #06030e;
+  --color-bg-card: #0c0818;
+  --color-bg-section: #0f0b1e;
+  --color-text-primary: #f5f3ff;
   --color-text-secondary: #9ca3af;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
@@ -21,7 +21,7 @@ html {
 }
 
 body {
-  background: #050505;
+  background: #06030e;
 }
 
 /* Hide default cursor on pointer devices for the custom cursor experience */
