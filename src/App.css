@@ -23,173 +23,83 @@ html {
 ===================== */
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
 }
 
 @keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 @keyframes pulse-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 8px rgba(34, 211, 238, 0.4), 0 0 20px rgba(59, 130, 246, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 24px rgba(34, 211, 238, 0.7), 0 0 48px rgba(59, 130, 246, 0.4);
-  }
+  0%, 100% { box-shadow: 0 0 8px rgba(34, 211, 238, 0.4), 0 0 20px rgba(59, 130, 246, 0.2); }
+  50% { box-shadow: 0 0 24px rgba(34, 211, 238, 0.7), 0 0 48px rgba(59, 130, 246, 0.4); }
 }
 
 @keyframes gradient-move {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes particle-float {
-  0%,
-  100% {
-    transform: translateY(0) translateX(0);
-    opacity: 0.3;
-  }
-  33% {
-    transform: translateY(-20px) translateX(10px);
-    opacity: 0.6;
-  }
-  66% {
-    transform: translateY(-10px) translateX(-10px);
-    opacity: 0.4;
-  }
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+  33% { transform: translateY(-20px) translateX(10px); opacity: 0.6; }
+  66% { transform: translateY(-10px) translateX(-10px); opacity: 0.4; }
 }
 
 @keyframes border-glow {
-  0%,
-  100% {
-    border-color: rgba(59, 130, 246, 0.4);
-  }
-  50% {
-    border-color: rgba(34, 211, 238, 0.7);
-  }
+  0%, 100% { border-color: rgba(59, 130, 246, 0.4); }
+  50% { border-color: rgba(34, 211, 238, 0.7); }
+}
+
+@keyframes draw-line {
+  from { width: 0; }
+  to { width: 4rem; }
 }
 
 /* =====================
    Utility Classes
 ===================== */
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.7s ease-out forwards;
-}
-
-.animate-fade-in-left {
-  animation: fadeInLeft 0.7s ease-out forwards;
-}
-
-.animate-fade-in-right {
-  animation: fadeInRight 0.7s ease-out forwards;
-}
-
-.animate-float {
-  animation: float 4s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2.5s ease-in-out infinite;
-}
-
-.animate-slide-down {
-  animation: slideDown 0.3s ease-out forwards;
-}
-
-.animate-border-glow {
-  animation: border-glow 3s ease-in-out infinite;
-}
+.animate-fade-in-up { animation: fadeInUp 0.7s ease-out forwards; }
+.animate-fade-in-left { animation: fadeInLeft 0.7s ease-out forwards; }
+.animate-fade-in-right { animation: fadeInRight 0.7s ease-out forwards; }
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
+.animate-slide-down { animation: slideDown 0.3s ease-out forwards; }
+.animate-border-glow { animation: border-glow 3s ease-in-out infinite; }
 
 /* Animation delay utilities */
-.delay-100 {
-  animation-delay: 100ms;
-}
-.delay-200 {
-  animation-delay: 200ms;
-}
-.delay-300 {
-  animation-delay: 300ms;
-}
-.delay-400 {
-  animation-delay: 400ms;
-}
-.delay-500 {
-  animation-delay: 500ms;
-}
-.delay-600 {
-  animation-delay: 600ms;
-}
-.delay-700 {
-  animation-delay: 700ms;
-}
-.delay-800 {
-  animation-delay: 800ms;
-}
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
 
 /* Shimmer button */
 .btn-shimmer {
@@ -199,16 +109,8 @@ html {
 .btn-shimmer::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.25) 50%,
-    transparent 100%
-  );
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
   transform: translateX(-100%);
 }
 .btn-shimmer:hover::after {
@@ -217,21 +119,10 @@ html {
 
 /* Animated hero gradient background */
 .hero-gradient-bg {
-  background: radial-gradient(
-      ellipse at 20% 50%,
-      rgba(59, 130, 246, 0.15) 0%,
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse at 80% 30%,
-      rgba(34, 211, 238, 0.1) 0%,
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse at 50% 80%,
-      rgba(139, 92, 246, 0.08) 0%,
-      transparent 55%
-    );
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 30%, rgba(34, 211, 238, 0.1) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 55%);
   background-size: 200% 200%;
   animation: gradient-move 10s ease infinite;
 }
@@ -239,8 +130,8 @@ html {
 /* Glassmorphism card */
 .glass-card {
   background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 /* Particle dots */
@@ -251,11 +142,19 @@ html {
   animation: particle-float linear infinite;
 }
 
+/*
+  Custom cursor: suppress the default cursor on pointer devices so our
+  custom canvas cursor takes over. Text fields keep `cursor: text` for
+  accessibility. Touch/coarse-pointer devices fall back to the OS cursor.
+*/
+@media (hover: hover) and (pointer: fine) {
+  *:not(input):not(textarea):not(select) { cursor: none !important; }
+  input, textarea, select { cursor: text; }
+}
+
 /* Prefers reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  ::before,
-  ::after {
+  *, ::before, ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
