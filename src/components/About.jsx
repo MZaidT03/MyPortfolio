@@ -31,7 +31,7 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-20 bg-[#0f0b1e] text-gray-300">
+    <section id="about" className="py-20 bg-[#f5f3ff] text-gray-700">
       <div className="container mx-auto px-6">
         <SectionHeading>About Me</SectionHeading>
         <div className="flex flex-col md:flex-row items-center md:items-start gap-12">
@@ -46,7 +46,7 @@ const About = () => {
               <img
                 src={imgProfile}
                 alt="Muhammad Zaid Tahir"
-                className="w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 rounded-full border-4 border-[#0f0b1e] object-cover animate-float"
+                className="w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 rounded-full border-4 border-[#f5f3ff] object-cover animate-float"
               />
             </div>
           </motion.div>
@@ -59,7 +59,7 @@ const About = () => {
           >
             <motion.div variants={paragraphVariants} className="flex items-center gap-3 justify-center md:justify-start mb-2">
               <div className="h-px w-12 bg-gradient-to-r from-violet-500 to-amber-400" />
-              <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest">
+              <span className="text-violet-600 text-sm font-semibold uppercase tracking-widest">
                 Who am I?
               </span>
             </motion.div>

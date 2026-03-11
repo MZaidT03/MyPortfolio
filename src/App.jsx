@@ -22,7 +22,7 @@ export default function App() {
   };
 
   return (
-    <div className="bg-[#06030e] text-gray-300">
+    <div className="bg-white text-gray-800">
       <ScrollProgress />
       <CustomCursor />
       <Header onLinkClick={handleNavLinkClick} />

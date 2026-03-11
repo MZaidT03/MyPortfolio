@@ -54,7 +54,7 @@ const CustomCursor = () => {
         }}
       >
         <motion.div
-          className="rounded-full bg-violet-400"
+          className="rounded-full bg-violet-600"
           animate={{
             width: isPointer ? 8 : 6,
             height: isPointer ? 8 : 6,
@@ -75,7 +75,7 @@ const CustomCursor = () => {
         }}
       >
         <motion.div
-          className="rounded-full border border-violet-400"
+          className="rounded-full border border-violet-600"
           style={{ mixBlendMode: "difference" }}
           animate={{
             width: isPointer ? 48 : 32,

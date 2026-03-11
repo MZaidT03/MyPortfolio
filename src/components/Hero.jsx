@@ -79,7 +79,7 @@ const Hero = ({ onLinkClick }) => {
   const nameWords = portfolioData.name.split(" ");
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center bg-[#06030e] text-white text-center overflow-hidden hero-gradient-bg">
+    <section id="home" className="relative min-h-screen flex items-center bg-white text-gray-900 text-center overflow-hidden hero-gradient-bg">
       <motion.div
         className="absolute inset-0 hero-gradient-bg"
         animate={{ x: parallaxX * 0.3, y: parallaxY * 0.3 }}
@@ -106,13 +106,13 @@ const Hero = ({ onLinkClick }) => {
           {/* Title */}
           <motion.p
             variants={fadeVariants}
-            className="text-xl md:text-2xl text-gray-300 mb-4"
+            className="text-xl md:text-2xl text-gray-600 mb-4"
           >
             {portfolioData.title}
           </motion.p>
 
           {/* Bio */}
-          <motion.p variants={fadeVariants} className="text-gray-400 max-w-2xl mx-auto mb-10">
+          <motion.p variants={fadeVariants} className="text-gray-500 max-w-2xl mx-auto mb-10">
             {portfolioData.bio}
           </motion.p>
 
@@ -129,7 +129,7 @@ const Hero = ({ onLinkClick }) => {
                 href={href}
                 target="_blank"
                 rel="noreferrer"
-                className="text-gray-300 hover:text-violet-400 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded"
+                className="text-gray-600 hover:text-violet-600 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded"
                 aria-label={label}
                 whileHover={{ scale: 1.25, rotate: 5 }}
               >
