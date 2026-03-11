@@ -17,8 +17,8 @@ const cardVariants = (i) => ({
 });
 
 const techTagVariants = {
-  rest: { color: "#a78bfa" },
-  hover: { color: "#ffffff", backgroundColor: "#2e1065" },
+  rest: { color: "#7c3aed" },
+  hover: { color: "#4c1d95", backgroundColor: "#ede9fe" },
 };
 
 const TiltCard = ({ project, i }) => {
@@ -52,13 +52,13 @@ const TiltCard = ({ project, i }) => {
       }}
     >
       <motion.div
-        className="relative bg-[#0c0818] rounded-xl border border-violet-900/40 overflow-hidden"
+        className="relative bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm"
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         whileHover={{
           y: -8,
-          boxShadow: "0 20px 40px rgba(124,58,237,0.18)",
+          boxShadow: "0 20px 40px rgba(124,58,237,0.12)",
           borderColor: "#7c3aed",
           transition: { type: "spring", stiffness: 200, damping: 20 },
         }}
@@ -66,17 +66,17 @@ const TiltCard = ({ project, i }) => {
         {/* Left accent bar */}
         <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-violet-600 to-amber-400" />
         {/* Watermark number */}
-        <span className="absolute top-2 right-4 text-6xl font-black text-violet-900/30 select-none pointer-events-none leading-none">
+        <span className="absolute top-2 right-4 text-6xl font-black text-violet-200/60 select-none pointer-events-none leading-none">
           {String(i + 1).padStart(2, "0")}
         </span>
         <div className="p-6 pl-7">
           <motion.h3
-            className="text-xl font-bold text-white mb-2 tracking-tight"
+            className="text-xl font-bold text-gray-900 mb-2 tracking-tight"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             {project.title}
           </motion.h3>
-          <p className="text-gray-400 mb-4 text-sm leading-relaxed">{project.description}</p>
+          <p className="text-gray-500 mb-4 text-sm leading-relaxed">{project.description}</p>
           <motion.div
             className="flex flex-wrap gap-2"
             initial="rest"
@@ -86,7 +86,7 @@ const TiltCard = ({ project, i }) => {
               <motion.span
                 key={j}
                 variants={techTagVariants}
-                className="bg-violet-950/60 text-sm px-3 py-1 rounded-full transition-colors duration-200"
+                className="bg-violet-50 text-sm px-3 py-1 rounded-full transition-colors duration-200"
                 transition={{ delay: j * 0.04 }}
               >
                 {t}
@@ -100,7 +100,7 @@ const TiltCard = ({ project, i }) => {
 };
 
 const Projects = () => (
-  <section id="projects" className="py-20 bg-[#06030e] text-left">
+  <section id="projects" className="py-20 bg-white text-left">
     <div className="container mx-auto px-6 max-w-5xl">
       <SectionHeading>My Projects</SectionHeading>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

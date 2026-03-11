@@ -3,10 +3,10 @@ import portfolioData from "../data/portfolioData";
 import MagneticButton from "./MagneticButton";
 
 const Contact = () => (
-  <section id="contact" className="relative py-20 bg-[#0f0b1e] text-center overflow-hidden">
+  <section id="contact" className="relative py-20 bg-[#f5f3ff] text-center overflow-hidden">
     {/* Dot texture */}
     <div
-      className="absolute inset-0 opacity-10"
+      className="absolute inset-0 opacity-[0.06]"
       style={{
         backgroundImage: "radial-gradient(circle, #7c3aed 1px, transparent 1px)",
         backgroundSize: "32px 32px",
@@ -23,7 +23,7 @@ const Contact = () => (
       <motion.svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
-        stroke="#a78bfa"
+        stroke="#7c3aed"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -56,7 +56,7 @@ const Contact = () => (
       >
         Get In Touch
       </h2>
-      <p className="text-gray-400 max-w-2xl mx-auto mb-8 px-6">
+      <p className="text-gray-500 max-w-2xl mx-auto mb-8 px-6">
         I'm open to collaborations and freelance projects! Let's bring your ideas to life.
       </p>
       <MagneticButton

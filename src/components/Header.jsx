@@ -44,14 +44,14 @@ const Header = ({ onLinkClick }) => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-black/90 backdrop-blur-md shadow-lg" : "bg-transparent"
+        isScrolled ? "bg-white/90 backdrop-blur-md shadow-md" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <a
           href="#home"
           onClick={(e) => onLinkClick(e, "#home")}
-          className="flex items-center gap-2 text-2xl font-bold text-white hover:text-violet-400 transition-colors duration-300"
+          className="flex items-center gap-2 text-2xl font-bold text-gray-900 hover:text-violet-600 transition-colors duration-300"
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
           <span className="w-7 h-7 rounded-md bg-gradient-to-br from-violet-600 to-amber-400 flex items-center justify-center text-sm font-black">
@@ -70,8 +70,8 @@ const Header = ({ onLinkClick }) => {
                 onClick={(e) => onLinkClick(e, `#${id}`)}
                 className={`relative py-1 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-gradient-to-r after:from-violet-500 after:to-amber-400 after:transition-all after:duration-300 ${
                   isActive
-                    ? "text-violet-400 after:w-full"
-                    : "text-gray-300 hover:text-violet-400 after:w-0 hover:after:w-full"
+                    ? "text-violet-600 after:w-full"
+                    : "text-gray-700 hover:text-violet-600 after:w-0 hover:after:w-full"
                 }`}
               >
                 {link}
@@ -81,7 +81,7 @@ const Header = ({ onLinkClick }) => {
         </nav>
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded text-white"
+          className="md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded text-gray-700"
           aria-label="Toggle menu"
         >
           <AnimatePresence mode="wait" initial={false}>
@@ -103,7 +103,7 @@ const Header = ({ onLinkClick }) => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="md:hidden bg-black/95 backdrop-blur-md border-t border-gray-800 text-center overflow-hidden"
+            className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 text-center overflow-hidden"
             variants={menuVariants}
             initial="hidden"
             animate="visible"
@@ -122,7 +122,7 @@ const Header = ({ onLinkClick }) => {
                     setIsMenuOpen(false);
                   }}
                   className={`block py-3 transition-colors duration-300 ${
-                    isActive ? "text-violet-400" : "text-gray-300 hover:text-violet-400"
+                    isActive ? "text-violet-600" : "text-gray-700 hover:text-violet-600"
                   }`}
                 >
                   {link}

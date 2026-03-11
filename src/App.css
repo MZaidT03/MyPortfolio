@@ -8,7 +8,7 @@ html {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0c0818;
+  background: #f5f3ff;
 }
 ::-webkit-scrollbar-thumb {
   background: #7c3aed;
@@ -48,8 +48,8 @@ html {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 8px rgba(124, 58, 237, 0.4), 0 0 20px rgba(167, 139, 250, 0.2); }
-  50% { box-shadow: 0 0 24px rgba(124, 58, 237, 0.7), 0 0 48px rgba(251, 191, 36, 0.3); }
+  0%, 100% { box-shadow: 0 0 8px rgba(124, 58, 237, 0.3), 0 0 20px rgba(167, 139, 250, 0.15); }
+  50% { box-shadow: 0 0 24px rgba(124, 58, 237, 0.5), 0 0 48px rgba(251, 191, 36, 0.2); }
 }
 
 @keyframes gradient-move {
@@ -120,16 +120,16 @@ html {
 /* Animated hero gradient background */
 .hero-gradient-bg {
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(124, 58, 237, 0.18) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 30%, rgba(251, 191, 36, 0.08) 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 80%, rgba(167, 139, 250, 0.1) 0%, transparent 55%);
+    radial-gradient(ellipse at 20% 50%, rgba(124, 58, 237, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 30%, rgba(251, 191, 36, 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 80%, rgba(167, 139, 250, 0.07) 0%, transparent 55%);
   background-size: 200% 200%;
   animation: gradient-move 10s ease infinite;
 }
 
 /* Glassmorphism card */
 .glass-card {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
@@ -138,7 +138,7 @@ html {
 .particle {
   position: absolute;
   border-radius: 50%;
-  background: rgba(167, 139, 250, 0.4);
+  background: rgba(124, 58, 237, 0.2);
   animation: particle-float linear infinite;
 }
 

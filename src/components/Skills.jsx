@@ -15,15 +15,15 @@ function getBubbleSize(skill) {
   return { r: 38, fontSize: 11 };
 }
 
-// Distinct violet/amber hues for variety
+// Distinct violet/amber hues for light background
 const bubbleColors = [
-  { bg: "rgba(124,58,237,0.35)",  border: "rgba(167,139,250,0.75)", text: "#e9d5ff" },
-  { bg: "rgba(251,191,36,0.25)",  border: "rgba(251,191,36,0.70)",  text: "#fde68a" },
-  { bg: "rgba(167,139,250,0.30)", border: "rgba(196,181,253,0.70)", text: "#f5f3ff" },
-  { bg: "rgba(109,40,217,0.38)",  border: "rgba(139,92,246,0.75)",  text: "#ddd6fe" },
-  { bg: "rgba(245,158,11,0.28)",  border: "rgba(251,191,36,0.65)",  text: "#fcd34d" },
-  { bg: "rgba(76,29,149,0.42)",   border: "rgba(167,139,250,0.65)", text: "#e9d5ff" },
-  { bg: "rgba(217,119,6,0.28)",   border: "rgba(245,158,11,0.70)",  text: "#fef3c7" },
+  { bg: "rgba(124,58,237,0.10)",  border: "rgba(124,58,237,0.55)", text: "#5b21b6" },
+  { bg: "rgba(251,191,36,0.12)",  border: "rgba(217,119,6,0.55)",  text: "#92400e" },
+  { bg: "rgba(167,139,250,0.12)", border: "rgba(124,58,237,0.45)", text: "#4c1d95" },
+  { bg: "rgba(109,40,217,0.10)",  border: "rgba(109,40,217,0.55)", text: "#4c1d95" },
+  { bg: "rgba(245,158,11,0.10)",  border: "rgba(217,119,6,0.50)",  text: "#78350f" },
+  { bg: "rgba(196,181,253,0.15)", border: "rgba(139,92,246,0.50)", text: "#4c1d95" },
+  { bg: "rgba(253,230,138,0.15)", border: "rgba(245,158,11,0.55)", text: "#78350f" },
 ];
 
 function initBubbles(skills, containerWidth) {
@@ -79,7 +79,7 @@ function Bubble({ bubble, onHover, hovered }) {
         cx={bubble.x}
         cy={bubble.y}
         r={r}
-        fill={isHovered ? color.border.replace(/[\d.]+\)$/, "0.45)") : color.bg}
+        fill={isHovered ? color.border.replace(/[\d.]+\)$/, "0.25)") : color.bg}
         stroke={color.border}
         strokeWidth={isHovered ? 1.5 : 1}
         style={{ transition: "fill 0.25s, stroke-width 0.2s" }}
@@ -88,7 +88,7 @@ function Bubble({ bubble, onHover, hovered }) {
         x={bubble.x}
         y={bubble.y + fontSize * 0.36}
         textAnchor="middle"
-        fill={isHovered ? "#ffffff" : color.text}
+        fill={isHovered ? "#4c1d95" : color.text}
         fontSize={fontSize}
         fontWeight={isHovered ? "700" : "600"}
         fontFamily="'Inter', sans-serif"
@@ -220,7 +220,7 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-20 bg-[#0f0b1e] text-center">
+    <section id="skills" className="py-20 bg-[#f5f3ff] text-center">
       <div className="container mx-auto px-6">
         <SectionHeading>My Tech Stack</SectionHeading>
         <motion.div
@@ -232,8 +232,8 @@ const Skills = () => {
           className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden"
           style={{
             height: CONTAINER_HEIGHT,
-            background: "radial-gradient(ellipse at 50% 50%, rgba(124,58,237,0.08) 0%, transparent 70%)",
-            border: "1px solid rgba(124,58,237,0.2)",
+            background: "radial-gradient(ellipse at 50% 50%, rgba(124,58,237,0.05) 0%, transparent 70%)",
+            border: "1px solid rgba(124,58,237,0.15)",
           }}
         >
           <svg
@@ -259,7 +259,7 @@ const Skills = () => {
               {portfolioData.skills.map((skill, i) => (
                 <span
                   key={i}
-                  className="px-4 py-2 rounded-full text-sm font-medium text-violet-300 border border-violet-700/50 bg-violet-950/40"
+                  className="px-4 py-2 rounded-full text-sm font-medium text-violet-700 border border-violet-300 bg-violet-50"
                 >
                   {skill}
                 </span>
@@ -267,7 +267,7 @@ const Skills = () => {
             </div>
           )}
         </motion.div>
-        <p className="mt-4 text-xs text-gray-500 select-none">Move your cursor over the bubbles</p>
+        <p className="mt-4 text-xs text-gray-400 select-none">Move your cursor over the bubbles</p>
       </div>
     </section>
   );

@@ -9,7 +9,7 @@ const SectionHeading = ({ children, className = "" }) => (
     transition={{ duration: 0.6, ease: "easeOut" }}
   >
     <h2
-      className="text-4xl md:text-5xl font-bold text-white tracking-tight"
+      className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight"
       style={{ fontFamily: "'Space Grotesk', sans-serif" }}
     >
       {children}

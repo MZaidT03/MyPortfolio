@@ -4,11 +4,11 @@
   --color-primary: #7c3aed;
   --color-accent: #fbbf24;
   --color-tertiary: #a78bfa;
-  --color-bg-dark: #06030e;
-  --color-bg-card: #0c0818;
-  --color-bg-section: #0f0b1e;
-  --color-text-primary: #f5f3ff;
-  --color-text-secondary: #9ca3af;
+  --color-bg-dark: #ffffff;
+  --color-bg-card: #ffffff;
+  --color-bg-section: #f5f3ff;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
@@ -21,7 +21,7 @@ html {
 }
 
 body {
-  background: #06030e;
+  background: #ffffff;
 }
 
 /* Hide default cursor on pointer devices for the custom cursor experience */
