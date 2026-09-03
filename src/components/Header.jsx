@@ -1,134 +1,147 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import useActiveSection from "../hooks/useActiveSection";
+import portfolioData from "../data/portfolioData";
 import MenuIcon from "../icons/MenuIcon";
 import XIcon from "../icons/XIcon";
 
-const navLinks = ["About", "CodeInn' Tech", "Skills", "Projects", "Contact"];
-
-const getLinkId = (link) =>
-  link.toLowerCase().replace(/['']/g, "").replace(/ /g, "");
+const navLinks = [
+  { label: "WORK", href: "#projects" },
+  { label: "ABOUT", href: "#about" },
+  { label: "JOURNAL", href: "#codeinntech" },
+  { label: "EXPERTISE", href: "#expertise" },
+  { label: "CONTACT", href: "#contact" },
+];
 
 const Header = ({ onLinkClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const sectionIds = ["home", "about", "codeinntech", "skills", "projects", "contact"];
-  const activeSection = useActiveSection(sectionIds);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const menuVariants = {
-    hidden: { opacity: 0, height: 0 },
-    visible: {
-      opacity: 1,
-      height: "auto",
-      transition: { duration: 0.3, ease: "easeOut", staggerChildren: 0.07, delayChildren: 0.05 },
-    },
-    exit: {
-      opacity: 0,
-      height: 0,
-      transition: { duration: 0.25, ease: "easeIn", staggerChildren: 0.05, staggerDirection: -1 },
-    },
-  };
-
-  const linkVariants = {
-    hidden: { opacity: 0, y: -10 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-    exit: { opacity: 0, y: -8, transition: { duration: 0.2 } },
+  const handleNav = (e, href) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    if (onLinkClick) {
+      onLinkClick(e, href);
+    } else {
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-md" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
+        isScrolled
+          ? "bg-[#0B0B0B]/90 backdrop-blur-md border-b border-[rgba(255,255,255,0.12)] py-4 text-[#F4F1EA]"
+          : "bg-transparent py-6 md:py-8 text-[#0B0B0B]"
       }`}
     >
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="w-full px-6 md:px-12 flex justify-between items-center">
+        {/* Top Left: Signature Script Logo */}
         <a
           href="#home"
-          onClick={(e) => onLinkClick(e, "#home")}
-          className="flex items-center gap-2 text-2xl font-bold text-gray-900 hover:text-violet-600 transition-colors duration-300"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          onClick={(e) => handleNav(e, "#home")}
+          className="group transition-transform hover:scale-105 inline-block"
+          data-cursor-text="ZAID"
         >
-          <span className="w-7 h-7 rounded-md bg-gradient-to-br from-violet-600 to-amber-400 flex items-center justify-center text-sm font-black">
-            Z
+          <span
+            className={`font-signature text-3xl md:text-4xl font-normal lowercase tracking-tight transition-colors ${
+              isScrolled ? "text-[#E5D9B6]" : "text-[#0B0B0B]"
+            }`}
+          >
+            zaid
           </span>
-          Muhammad Zaid Tahir
         </a>
-        <nav className="hidden md:flex space-x-8">
-          {navLinks.map((link) => {
-            const id = getLinkId(link);
-            const isActive = activeSection === id;
-            return (
-              <a
-                key={link}
-                href={`#${id}`}
-                onClick={(e) => onLinkClick(e, `#${id}`)}
-                className={`relative py-1 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-gradient-to-r after:from-violet-500 after:to-amber-400 after:transition-all after:duration-300 ${
-                  isActive
-                    ? "text-violet-600 after:w-full"
-                    : "text-gray-700 hover:text-violet-600 after:w-0 hover:after:w-full"
-                }`}
-              >
-                {link}
-              </a>
-            );
-          })}
+
+        {/* Top Center: Editorial Nav Links */}
+        <nav className="hidden md:flex items-center space-x-9 lg:space-x-12">
+          {navLinks.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={(e) => handleNav(e, item.href)}
+              className={`font-mono-editorial text-[11px] lg:text-xs font-bold tracking-[0.25em] uppercase transition-all py-1 hover:opacity-100 ${
+                isScrolled
+                  ? "text-[#F4F1EA]/75 hover:text-[#E5D9B6]"
+                  : "text-[#0B0B0B] hover:text-[#0B0B0B]/60"
+              }`}
+              data-cursor-text={item.label}
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded text-gray-700"
-          aria-label="Toggle menu"
-        >
-          <AnimatePresence mode="wait" initial={false}>
+
+        {/* Top Right: Dark Circular Button (Visible only on mobile) */}
+        <div className="flex md:hidden items-center gap-3">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${
+              isScrolled
+                ? "bg-[#E5D9B6] text-[#0B0B0B] hover:bg-[#F4F1EA]"
+                : "bg-[#0B0B0B] text-[#F4F1EA] hover:scale-105"
+            }`}
+            aria-label="Menu Trigger"
+            data-cursor-text="MENU"
+          >
             {isMenuOpen ? (
-              <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                <XIcon className="w-6 h-6" />
-              </motion.span>
+              <XIcon className="w-4 h-4" />
             ) : (
-              <motion.span key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                <MenuIcon className="w-6 h-6" />
-              </motion.span>
+              <div className="flex flex-col gap-1 items-end w-4">
+                <span className="w-4 h-[1.5px] bg-current rounded-full" />
+                <span className="w-3 h-[1.5px] bg-current rounded-full" />
+                <span className="w-2.5 h-[1.5px] bg-current rounded-full" />
+              </div>
             )}
-          </AnimatePresence>
-        </button>
+          </button>
+        </div>
       </div>
-      {isScrolled && (
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-violet-600 to-amber-400 opacity-60" />
-      )}
+
+      {/* Mobile Drawer Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 text-center overflow-hidden"
-            variants={menuVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="md:hidden bg-[#0B0B0B] border-b border-[rgba(255,255,255,0.12)] text-[#F4F1EA] px-6 py-8"
           >
-            {navLinks.map((link) => {
-              const id = getLinkId(link);
-              const isActive = activeSection === id;
-              return (
+            <div className="flex flex-col space-y-6">
+              <div className="flex items-center justify-between pb-3 border-b border-[rgba(255,255,255,0.08)] font-mono-editorial text-[10px] text-[#8E8B82] uppercase tracking-[0.25em]">
+                <span>NAVIGATION</span>
+                <span>BASED IN PAKISTAN</span>
+              </div>
+              {navLinks.map((item, idx) => (
                 <motion.a
-                  key={link}
-                  href={`#${id}`}
-                  variants={linkVariants}
-                  onClick={(e) => {
-                    onLinkClick(e, `#${id}`);
-                    setIsMenuOpen(false);
-                  }}
-                  className={`block py-3 transition-colors duration-300 ${
-                    isActive ? "text-violet-600" : "text-gray-700 hover:text-violet-600"
-                  }`}
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleNav(e, item.href)}
+                  initial={{ opacity: 0, x: -15 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.05 }}
+                  className="text-2xl font-display tracking-widest text-[#F4F1EA] hover:text-[#E5D9B6]"
                 >
-                  {link}
+                  {item.label}
                 </motion.a>
-              );
-            })}
+              ))}
+
+              <div className="pt-4">
+                <a
+                  href={`mailto:${portfolioData.contact}`}
+                  className="block w-full text-center py-3.5 rounded-full bg-[#E5D9B6] text-[#0B0B0B] font-mono-editorial text-xs font-bold tracking-[0.25em] uppercase"
+                >
+                  LET'S WORK TOGETHER ↗
+                </a>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

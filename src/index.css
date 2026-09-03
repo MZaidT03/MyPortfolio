@@ -1,32 +1,136 @@
 @import "tailwindcss";
 
-:root {
-  --color-primary: #7c3aed;
-  --color-accent: #fbbf24;
-  --color-tertiary: #a78bfa;
-  --color-bg-dark: #ffffff;
-  --color-bg-card: #ffffff;
-  --color-bg-section: #f5f3ff;
-  --color-text-primary: #111827;
-  --color-text-secondary: #6b7280;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-padding-top: 80px;
-}
-
-body {
-  background: #ffffff;
-}
-
-/* Hide default cursor on pointer devices for the custom cursor experience */
-@media (hover: hover) and (pointer: fine) {
-  body {
-    cursor: none;
+@layer base {
+  :root {
+    --color-obsidian: #0B0B0B;
+    --color-obsidian-card: #121212;
+    --color-obsidian-surface: #171717;
+    --color-bone: #F4F1EA;
+    --color-bone-muted: #E2DFD7;
+    --color-champagne: #E5D9B6;
+    --color-champagne-light: #F2EAD3;
+    --color-champagne-dark: #C9BA8E;
+    --color-border-dark: rgba(255, 255, 255, 0.12);
+    --color-border-bone: rgba(11, 11, 11, 0.12);
+    --color-muted: #8E8B82;
   }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    background-color: var(--color-obsidian);
+    color: var(--color-bone);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    scroll-behavior: auto !important; /* Lenis handles smooth scrolling */
+  }
+
+  body {
+    background-color: var(--color-obsidian);
+    color: var(--color-bone);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Custom cursor setup */
+  @media (hover: hover) and (pointer: fine) {
+    body, a, button, [role="button"] {
+      cursor: none !important;
+    }
+  }
+
+  /* Custom luxury scrollbar */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0B0B0B;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(229, 217, 182, 0.35);
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #E5D9B6;
+  }
+}
+
+/* Lenis smooth scrolling rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Typography Utility Classes */
+.font-signature {
+  font-family: 'Caveat', cursive;
+}
+
+.font-display {
+  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.font-editorial {
+  font-family: 'Syne', sans-serif;
+}
+
+.font-mono-editorial {
+  font-family: 'Space Grotesk', monospace;
+}
+
+.font-body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Brutalist Text Outlines */
+.text-stroke-bone {
+  -webkit-text-stroke: 1.5px #F4F1EA;
+  color: transparent;
+}
+.text-stroke-champagne {
+  -webkit-text-stroke: 1.5px #E5D9B6;
+  color: transparent;
+}
+.text-stroke-dark {
+  -webkit-text-stroke: 1.5px #0B0B0B;
+  color: transparent;
+}
+
+/* Subtle Film Grain Noise Texture */
+.bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* Rotating stamp animation */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 22s linear infinite;
+}
+
+/* Stacking card deck transition */
+.sticky-card {
+  position: sticky;
+  top: 120px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }

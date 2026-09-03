@@ -1,72 +1,191 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import portfolioData from "../data/portfolioData";
-import MagneticButton from "./MagneticButton";
+import GithubIcon from "../icons/GithubIcon";
+import LinkedinIcon from "../icons/LinkedinIcon";
 
-const Contact = () => (
-  <section id="contact" className="relative py-20 bg-[#f5f3ff] text-center overflow-hidden">
-    {/* Dot texture */}
-    <div
-      className="absolute inset-0 opacity-[0.06]"
-      style={{
-        backgroundImage: "radial-gradient(circle, #7c3aed 1px, transparent 1px)",
-        backgroundSize: "32px 32px",
-      }}
-    />
-    <motion.div
-      className="relative z-10"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+const Contact = () => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(portfolioData.contact);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
+
+  return (
+    <section
+      id="contact"
+      className="relative py-28 md:py-36 bg-[#0B0B0B] text-[#F4F1EA] border-t border-[rgba(255,255,255,0.12)] overflow-hidden"
     >
-      {/* SVG path draw animation */}
-      <motion.svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        stroke="#7c3aed"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        viewBox="0 0 24 24"
-        width="64"
-        height="64"
-        className="mx-auto mb-6"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.5 }}
-      >
-        <motion.rect
-          x="2" y="4" width="20" height="16" rx="2"
-          initial={{ pathLength: 0, opacity: 0 }}
-          whileInView={{ pathLength: 1, opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        />
-        <motion.path
-          d="m22 7-10 7L2 7"
-          initial={{ pathLength: 0, opacity: 0 }}
-          whileInView={{ pathLength: 1, opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-        />
-      </motion.svg>
-      <h2
-        className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-amber-400 tracking-tight"
-        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-      >
-        Get In Touch
-      </h2>
-      <p className="text-gray-500 max-w-2xl mx-auto mb-8 px-6">
-        I'm open to collaborations and freelance projects! Let's bring your ideas to life.
-      </p>
-      <MagneticButton
-        href={`mailto:${portfolioData.contact}`}
-        className="btn-shimmer inline-block bg-gradient-to-r from-violet-600 to-amber-500 px-8 py-3 rounded-full font-bold text-white hover:shadow-lg hover:shadow-violet-500/25 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
-      >
-        Say Hello
-      </MagneticButton>
-    </motion.div>
-  </section>
-);
+      {/* Background Watermark */}
+      <div className="absolute top-12 right-6 md:right-16 text-[18vw] font-display font-black text-white/[0.02] select-none pointer-events-none leading-none">
+        05
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        {/* Section Header */}
+        <div className="flex items-center gap-4 mb-16 pb-4 border-b border-[rgba(255,255,255,0.12)]">
+          <span className="font-mono-editorial text-xs tracking-[0.3em] text-[#E5D9B6] uppercase">
+            05 // INITIATE ENGAGEMENT
+          </span>
+          <div className="h-px flex-1 bg-gradient-to-r from-[#E5D9B6]/40 to-transparent" />
+          <span className="font-mono-editorial text-xs tracking-[0.25em] text-[#8E8B82] uppercase hidden sm:inline">
+            COMMISSION INQUIRIES
+          </span>
+        </div>
+
+        {/* Clean Editorial Layout without Form */}
+        <div className="max-w-4xl mx-auto space-y-12 text-center md:text-left">
+          {/* Headline Stage */}
+          <div>
+            <h2 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight text-[#F4F1EA] leading-[0.92]">
+              LET'S FORGE SOMETHING{" "}
+              <span className="text-stroke-champagne hover:text-[#E5D9B6] transition-colors">
+                EXTRAORDINARY.
+              </span>
+            </h2>
+            <p className="font-body text-base md:text-lg text-[#BFBBB0] mt-6 max-w-2xl leading-relaxed">
+              Have an ambitious web application, cross-platform mobile ecosystem, or architectural challenge in mind? My calendar is open for select freelance commissions and technical leadership through CodeInn' Tech.
+            </p>
+          </div>
+
+          {/* Primary Transmission Board (Direct Email & CTAs) */}
+          <div className="p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.14)] bg-[#121212] shadow-2xl relative overflow-hidden group hover:border-[#E5D9B6]/40 transition-colors duration-500">
+            {/* Ambient Gold Glow */}
+            <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-[#E5D9B6]/10 blur-[80px] pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div>
+                <span className="font-mono-editorial text-[10px] uppercase tracking-[0.25em] text-[#8E8B82] block mb-2">
+                  DIRECT TRANSMISSION INBOX
+                </span>
+                <a
+                  href={`mailto:${portfolioData.contact}`}
+                  className="font-display text-2xl sm:text-3xl md:text-4xl text-[#E5D9B6] hover:text-[#F4F1EA] transition-colors tracking-wide break-all"
+                  data-cursor-text="EMAIL"
+                >
+                  {portfolioData.contact}
+                </a>
+                <p className="font-mono-editorial text-xs text-[#8E8B82] tracking-wider mt-2">
+                  TYPICALLY RESPONDS WITHIN 24 HOURS
+                </p>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                <a
+                  href={`mailto:${portfolioData.contact}`}
+                  className="px-8 py-3.5 rounded-full bg-[#E5D9B6] text-[#0B0B0B] font-mono-editorial text-xs font-bold tracking-[0.25em] uppercase hover:bg-[#F4F1EA] transition-all hover:scale-105 shadow-xl"
+                  data-cursor-text="COMPOSE"
+                >
+                  SAY HELLO ↗
+                </a>
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="px-6 py-3.5 rounded-full border border-[rgba(255,255,255,0.2)] hover:border-[#E5D9B6] text-xs font-mono-editorial tracking-wider text-[#F4F1EA] hover:text-[#E5D9B6] transition-colors"
+                  data-cursor-text="COPY"
+                >
+                  {copied ? "COPIED ✓" : "COPY EMAIL"}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Network Nodes & Social Channels Grid */}
+          <div className="space-y-4">
+            <span className="font-mono-editorial text-[10px] uppercase tracking-[0.25em] text-[#8E8B82] block text-left">
+              NETWORK NODES & REPOSITORIES
+            </span>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {/* GitHub Card */}
+              <a
+                href={portfolioData.socials.github}
+                target="_blank"
+                rel="noreferrer"
+                className="p-6 rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[#141414] hover:border-[#E5D9B6]/50 hover:bg-[#1A1A1A] transition-all flex items-center justify-between group text-left"
+                data-cursor-text="GITHUB"
+              >
+                <div className="flex items-center gap-4">
+                  <GithubIcon className="w-6 h-6 text-[#E5D9B6]" />
+                  <div>
+                    <div className="font-mono-editorial text-xs font-bold text-[#F4F1EA] group-hover:text-[#E5D9B6] transition-colors">
+                      GITHUB
+                    </div>
+                    <div className="font-mono-editorial text-[11px] text-[#8E8B82]">
+                      @MZaidT03
+                    </div>
+                  </div>
+                </div>
+                <span className="text-[#8E8B82] group-hover:text-[#E5D9B6] group-hover:translate-x-1 transition-all">
+                  ↗
+                </span>
+              </a>
+
+              {/* LinkedIn Card */}
+              <a
+                href={portfolioData.socials.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="p-6 rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[#141414] hover:border-[#E5D9B6]/50 hover:bg-[#1A1A1A] transition-all flex items-center justify-between group text-left"
+                data-cursor-text="LINKEDIN"
+              >
+                <div className="flex items-center gap-4">
+                  <LinkedinIcon className="w-6 h-6 text-[#E5D9B6]" />
+                  <div>
+                    <div className="font-mono-editorial text-xs font-bold text-[#F4F1EA] group-hover:text-[#E5D9B6] transition-colors">
+                      LINKEDIN
+                    </div>
+                    <div className="font-mono-editorial text-[11px] text-[#8E8B82]">
+                      /in/zaid-tahir
+                    </div>
+                  </div>
+                </div>
+                <span className="text-[#8E8B82] group-hover:text-[#E5D9B6] group-hover:translate-x-1 transition-all">
+                  ↗
+                </span>
+              </a>
+
+              {/* CodeInn' Tech Studio Card */}
+              <a
+                href={portfolioData.brand.website}
+                target="_blank"
+                rel="noreferrer"
+                className="p-6 rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[#141414] hover:border-[#E5D9B6]/50 hover:bg-[#1A1A1A] transition-all flex items-center justify-between group text-left"
+                data-cursor-text="STUDIO"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-6 h-6 rounded-md bg-[#E5D9B6] text-[#0B0B0B] flex items-center justify-center font-display text-sm font-black">
+                    CI
+                  </div>
+                  <div>
+                    <div className="font-mono-editorial text-xs font-bold text-[#F4F1EA] group-hover:text-[#E5D9B6] transition-colors">
+                      STUDIO
+                    </div>
+                    <div className="font-mono-editorial text-[11px] text-[#8E8B82]">
+                      CodeInn' Tech
+                    </div>
+                  </div>
+                </div>
+                <span className="text-[#8E8B82] group-hover:text-[#E5D9B6] group-hover:translate-x-1 transition-all">
+                  ↗
+                </span>
+              </a>
+            </div>
+          </div>
+
+          {/* Bottom Availability Status Bar */}
+          <div className="pt-6 border-t border-[rgba(255,255,255,0.1)] flex flex-wrap items-center justify-between gap-4 font-mono-editorial text-xs tracking-[0.2em] text-[#8E8B82] uppercase">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>STATUS: OPEN FOR WORK // Q2-Q3 2026</span>
+            </div>
+            <span>BASED IN GUJRANWALA, PAKISTAN [32.18° N]</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default Contact;

@@ -1,154 +1,217 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import portfolioData from "../data/portfolioData";
-import useMousePosition from "../hooks/useMousePosition";
-import GithubIcon from "../icons/GithubIcon";
-import LinkedinIcon from "../icons/LinkedinIcon";
-import MagneticButton from "./MagneticButton";
-
-const Particles = () => {
-  const particles = [
-    { size: 4, top: "15%", left: "10%", duration: "6s", delay: "0s" },
-    { size: 3, top: "30%", left: "85%", duration: "8s", delay: "1s" },
-    { size: 5, top: "60%", left: "5%", duration: "7s", delay: "2s" },
-    { size: 3, top: "75%", left: "90%", duration: "9s", delay: "0.5s" },
-    { size: 4, top: "45%", left: "50%", duration: "5s", delay: "3s" },
-    { size: 2, top: "20%", left: "65%", duration: "10s", delay: "1.5s" },
-    { size: 3, top: "85%", left: "30%", duration: "7s", delay: "2.5s" },
-    { size: 5, top: "10%", left: "40%", duration: "8s", delay: "4s" },
-    { size: 2, top: "55%", left: "75%", duration: "11s", delay: "0.8s" },
-    { size: 3, top: "40%", left: "20%", duration: "9s", delay: "3.5s" },
-  ];
-  return (
-    <>
-      {particles.map((p, i) => (
-        <span key={i} aria-hidden="true" className="particle" style={{ width: p.size, height: p.size, top: p.top, left: p.left, animationDuration: p.duration, animationDelay: p.delay }} />
-      ))}
-    </>
-  );
-};
 
 const Hero = ({ onLinkClick }) => {
-  const shouldReduceMotion = useReducedMotion();
-  const { x, y } = useMousePosition();
+  const containerRef = useRef(null);
+  const dispRef = useRef(null);
+  const turbRef = useRef(null);
 
-  const parallaxX = shouldReduceMotion ? 0 : (x / window.innerWidth - 0.5) * 20;
-  const parallaxY = shouldReduceMotion ? 0 : (y / window.innerHeight - 0.5) * 20;
+  const currentScale = useRef(0);
+  const targetScale = useRef(0);
+  const frameId = useRef(null);
+  const phase = useRef(0);
 
-  const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } },
+  useEffect(() => {
+    const animate = () => {
+      currentScale.current += (targetScale.current - currentScale.current) * 0.12;
+      phase.current += 0.02;
+
+      if (dispRef.current) {
+        dispRef.current.setAttribute("scale", currentScale.current.toFixed(2));
+      }
+      if (turbRef.current) {
+        const freqX = 0.012 + Math.sin(phase.current) * 0.005;
+        const freqY = 0.035 + Math.cos(phase.current * 0.8) * 0.008;
+        turbRef.current.setAttribute("baseFrequency", `${freqX.toFixed(4)} ${freqY.toFixed(4)}`);
+      }
+
+      frameId.current = requestAnimationFrame(animate);
+    };
+
+    frameId.current = requestAnimationFrame(animate);
+    return () => {
+      if (frameId.current) cancelAnimationFrame(frameId.current);
+    };
+  }, []);
+
+  const handlePointerMove = (e) => {
+    const velocity = Math.hypot(e.movementX || 0, e.movementY || 0);
+    const boost = Math.min(36, velocity * 2);
+    targetScale.current = Math.max(16, boost);
   };
 
-  const wordVariants = {
-    hidden: { y: "100%", opacity: 0 },
-    visible: {
-      y: "0%",
-      opacity: 1,
-      transition: { duration: 0.7, ease: [0.33, 1, 0.68, 1] },
-    },
+  const handlePointerEnter = () => {
+    targetScale.current = 22;
   };
 
-  const fadeVariants = {
-    hidden: { opacity: 0, filter: "blur(8px)", y: 20 },
-    visible: {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-      transition: { duration: 0.7, ease: "easeOut" },
-    },
+  const handlePointerLeave = () => {
+    targetScale.current = 0;
   };
 
-  const iconVariants = {
-    hidden: { scale: 0, opacity: 0 },
-    visible: (i) => ({
-      scale: 1,
-      opacity: 1,
-      transition: { type: "spring", stiffness: 260, damping: 20, delay: i * 0.1 },
-    }),
+  const scrollTo = (e, id) => {
+    e.preventDefault();
+    if (onLinkClick) {
+      onLinkClick(e, id);
+    } else {
+      const el = document.querySelector(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
   };
-
-  const ctaVariants = {
-    hidden: { scale: 0, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: { type: "spring", stiffness: 200, damping: 12, delay: 0.8 },
-    },
-  };
-
-  const nameWords = portfolioData.name.split(" ");
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center bg-white text-gray-900 text-center overflow-hidden hero-gradient-bg">
-      <motion.div
-        className="absolute inset-0 hero-gradient-bg"
-        animate={{ x: parallaxX * 0.3, y: parallaxY * 0.3 }}
-        transition={{ type: "spring", stiffness: 50, damping: 30 }}
-      />
-      <Particles />
-      <div className="container mx-auto px-6 relative z-10">
-        <motion.div variants={containerVariants} initial="hidden" animate="visible">
-          {/* Name with word masking */}
-          <div className="flex flex-wrap justify-center gap-x-4 mb-4">
-            {nameWords.map((word, i) => (
-              <div key={i} className="overflow-hidden">
-                <motion.span
-                  variants={wordVariants}
-                  className="inline-block text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-violet-500 via-purple-400 to-amber-400"
-                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                >
-                  {word}
-                </motion.span>
-              </div>
-            ))}
-          </div>
+    <section
+      id="home"
+      ref={containerRef}
+      onPointerMove={handlePointerMove}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
+      className="relative h-screen min-h-[720px] max-h-[1080px] bg-[#F4F1EA] text-[#0B0B0B] flex flex-col justify-between pt-24 md:pt-28 pb-8 md:pb-10 px-6 md:px-12 select-none overflow-hidden"
+    >
+      {/* Dynamic SVG Liquid Distortion Shader */}
+      <svg className="absolute w-0 h-0 pointer-events-none" aria-hidden="true">
+        <defs>
+          <filter id="liquid-warp" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence
+              ref={turbRef}
+              type="fractalNoise"
+              baseFrequency="0.015 0.04"
+              numOctaves="3"
+              result="warpNoise"
+            />
+            <feDisplacementMap
+              ref={dispRef}
+              in="SourceGraphic"
+              in2="warpNoise"
+              scale="0"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+        </defs>
+      </svg>
 
-          {/* Title */}
-          <motion.p
-            variants={fadeVariants}
-            className="text-xl md:text-2xl text-gray-600 mb-4"
+      {/* Top Spacer to account for fixed Header */}
+      <div className="w-full h-2" />
+
+      {/* Main Hero Center Stage */}
+      <div className="flex flex-col items-center justify-center my-auto w-full text-center">
+        {/* Massive CREATIVE + DEVELOPER Headline with Liquid Shader */}
+        <div
+          className="relative w-full cursor-pointer flex flex-col items-center transition-transform"
+          data-cursor-text="EXPLORE"
+        >
+          {/* CREATIVE - Monumental Height & Width */}
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            style={{ filter: "url(#liquid-warp)" }}
+            className="font-display font-black text-[#0B0B0B] text-[20vw] sm:text-[19vw] md:text-[18.5vw] lg:text-[17.5vw] leading-[0.78] tracking-tight uppercase select-none scale-y-110 sm:scale-y-115 origin-bottom"
           >
-            {portfolioData.title}
-          </motion.p>
+            CREATIVE
+          </motion.h1>
 
-          {/* Bio */}
-          <motion.p variants={fadeVariants} className="text-gray-500 max-w-2xl mx-auto mb-10">
-            {portfolioData.bio}
-          </motion.p>
-
-          {/* Social Icons */}
-          <div className="flex justify-center gap-6 mb-10">
-            {[
-              { href: portfolioData.socials.github, Icon: GithubIcon, label: "GitHub" },
-              { href: portfolioData.socials.linkedin, Icon: LinkedinIcon, label: "LinkedIn" },
-            ].map(({ href, Icon, label }, i) => (
-              <motion.a
-                key={label}
-                custom={i}
-                variants={iconVariants}
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                className="text-gray-600 hover:text-violet-600 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded"
-                aria-label={label}
-                whileHover={{ scale: 1.25, rotate: 5 }}
-              >
-                <Icon className="w-8 h-8" />
-              </motion.a>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <motion.div variants={ctaVariants}>
-            <MagneticButton
-              href="#contact"
-              onClick={(e) => onLinkClick(e, "#contact")}
-              className="btn-shimmer inline-block bg-gradient-to-r from-violet-600 to-amber-500 px-8 py-3 rounded-full font-bold text-white transition-all duration-300 shadow-lg hover:shadow-violet-500/30 hover:shadow-xl animate-pulse-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
-            >
-              Get In Touch
-            </MagneticButton>
+          {/* DEVELOPER - Perfectly Centered */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            style={{ filter: "url(#liquid-warp)" }}
+            className="font-display font-black text-[#0B0B0B] text-[7.5vw] sm:text-[6.5vw] md:text-[5.5vw] lg:text-[4.8vw] leading-none tracking-tight uppercase mt-2 sm:mt-3 md:mt-4 scale-y-110 origin-top"
+          >
+            DEVELOPER
           </motion.div>
+        </div>
+
+        {/* Sub-navigation Tagline: VISUALS • CODE • EXPERIENCE */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="flex items-center justify-center gap-3 sm:gap-6 md:gap-8 font-mono-editorial text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-[#0B0B0B] mt-5 sm:mt-7 md:mt-8"
+        >
+          <span className="hover:opacity-60 transition-opacity">VISUALS</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#0B0B0B]" />
+          <span className="hover:opacity-60 transition-opacity">CODE</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#0B0B0B]" />
+          <span className="hover:opacity-60 transition-opacity">EXPERIENCE</span>
         </motion.div>
+      </div>
+
+      {/* Bottom Pinned Micro-Metadata Grid */}
+      <div className="w-full flex justify-between items-end relative z-10 pt-4">
+        {/* Bottom Left: ©2026 zaid */}
+        <div className="flex items-center gap-1 font-mono-editorial text-xs sm:text-sm font-bold text-[#0B0B0B] tracking-wider">
+          <span>&copy;2026</span>
+          <span className="font-signature text-2xl sm:text-3xl lowercase ml-1.5 font-normal">
+            zaid
+          </span>
+        </div>
+
+        {/* Bottom Center: SCROLL TO EXPLORE with Down Arrow */}
+        <a
+          href="#about"
+          onClick={(e) => scrollTo(e, "#about")}
+          className="flex flex-col items-center gap-1 group cursor-pointer"
+          data-cursor-text="DOWN"
+        >
+          <span className="font-mono-editorial text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-[0.25em] text-[#0B0B0B] group-hover:opacity-60 transition-opacity">
+            SCROLL TO EXPLORE
+          </span>
+          <span className="text-base text-[#0B0B0B] animate-bounce">
+            ↓
+          </span>
+        </a>
+
+        {/* Bottom Right: Circular Rotating Stamp + BASED IN PAKISTAN */}
+        <div className="flex flex-col items-center md:items-end">
+          <a
+            href="#contact"
+            onClick={(e) => scrollTo(e, "#contact")}
+            className="relative w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center group cursor-pointer"
+            data-cursor-text="CONNECT"
+          >
+            {/* Outer Circular SVG Rotating Stamp */}
+            <svg
+              className="w-full h-full animate-spin-slow"
+              viewBox="0 0 200 200"
+            >
+              <defs>
+                <path
+                  id="stampCirclePath"
+                  d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"
+                />
+              </defs>
+              <circle
+                cx="100"
+                cy="100"
+                r="78"
+                fill="none"
+                stroke="#0B0B0B"
+                strokeWidth="1.5"
+                opacity="0.35"
+              />
+              <text className="font-mono-editorial text-[11px] uppercase tracking-[0.28em] fill-[#0B0B0B] font-bold">
+                <textPath href="#stampCirclePath" startOffset="0%">
+                  LET'S WORK TOGETHER • LET'S WORK TOGETHER •
+                </textPath>
+              </text>
+            </svg>
+
+            {/* Center Arrow Icon */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="font-display text-xl sm:text-2xl text-[#0B0B0B] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+                ↗
+              </span>
+            </div>
+          </a>
+
+          {/* Underneath the circular stamp: BASED IN PAKISTAN */}
+          <span className="font-mono-editorial text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.25em] text-[#0B0B0B] mt-1.5 text-right">
+            BASED IN PAKISTAN
+          </span>
+        </div>
       </div>
     </section>
   );
